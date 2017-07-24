@@ -73,6 +73,7 @@
 <SCRIPT src="js/163css.js" type=text/javascript></SCRIPT>
 	<center>
 	<h2><font color="#333399">${sessionScope.good.price }￥</font></h2>
+	${sessionScope.user.id }
 	<form action="addCart" method="post">
 	<input type="hidden" id="id" name="id" value="${sessionScope.good.id }">
 	<input type="hidden" id="name" name="name" value="${sessionScope.good.name }">

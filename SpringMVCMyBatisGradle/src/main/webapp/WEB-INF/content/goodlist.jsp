@@ -173,7 +173,7 @@
             </li>
             
 			<li>
-                <span><i class="icon-folder-open"></i> 库存</span> <a href=""></a>
+                <span><i class="icon-folder-open"></i> 库存</span> <a href="sumGood">查看库存</a>
                 <ul>
                     <li>
                         <span><i class="icon-leaf"></i> 一级节点2_1</span> <a href=""></a>
@@ -209,20 +209,19 @@
 		</table><br>
 		<table border="1">
 	<tr>
-		<th width="50px">货号</th><th width="150px">图片1</th><th width="150px">图片2</th><th width="150px">图片3</th><th width="50px">名称</th><th width="50px">价格</th><th width="50px">类别</th><th width="50px">数量</th><th width="50px">操作</th>
+		<th width="50px">货号</th><th width="100px">图片1</th><th width="50px">名称</th><th width="50px">价格</th><th width="50px">类别</th><th width="50px">库存</th><th width="50px">操作</th ><th width="50px">销售统计</th>
 	</tr>
 	<c:forEach items="${requestScope.good_list }" var="good">
 		<form action="delete" method="post" >
 		<tr>
 			<td>${good.id }</td>
 			<td><img src="image/${good.image}"></td>
-			<td><img src="image/${good.image2}"></td>
-			<td><img src="image/${good.image3}"></td>
 			<td>${good.name }</td>
 			<td>${good.price }</td>
 			<td>${good.parent_category_sn }</td>
 			<td>${good.count }</td>
 			<td><input type="submit" value="删除"></td>
+			<td>${good.sale }</td>
 		</tr>
 		<input type="hidden" id="id" name="id" value="${good.id }">
 		</form>
@@ -231,8 +230,6 @@
 	<tr height="100px">
 	<td><input type="text" id="id" name="id" class="form-control"></td>
 	<td><input id="fileImage" name="image" type="file" size="30"  multiple/></td>
-	<td></td>
-	<td></td>
 	<td><input type="text" id="name" name="name" class="form-control"></td>
 	<td><input type="text" id="price" name="price" class="form-control"></td>
 	<td><input type="text" id="parent_category_sn" name="parent_category_sn" class="form-control"></td>

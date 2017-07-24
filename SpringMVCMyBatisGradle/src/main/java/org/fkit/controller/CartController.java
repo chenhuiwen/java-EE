@@ -54,7 +54,7 @@ public class CartController {
 			@ModelAttribute Cart cart,
 			ModelAndView mv,
 			 HttpSession session){
-		  cartService.deleteCart(cart);
+			cartService.deleteCart(cart);
 		mv.setView(new RedirectView("./cartlist"));
 	return mv;
 	}
@@ -62,7 +62,9 @@ public class CartController {
 	public ModelAndView reducecart(Model model,
 			ModelAndView mv,
 			HttpServletRequest request){
+		Cart cart=new Cart();
 		String good_sn = request.getParameter("good_sn");
+		cart.setGood_sn(good_sn);
 		cartService.reduceCart(good_sn);
 		mv.setView(new RedirectView("./cartlist"));
 		return mv;
@@ -75,5 +77,16 @@ public class CartController {
 		int count=cartService.deleteAll(cart);
 		mv.setView(new RedirectView("./cartlist"));
 	return mv;
+	}
+	@RequestMapping(value="/addcount")
+	public ModelAndView addcount(Model model,
+			ModelAndView mv,
+			HttpServletRequest request){
+		Cart cart=new Cart();
+		String good_sn = request.getParameter("good_sn");
+		cart.setGood_sn(good_sn);
+		cartService.addCart(good_sn);
+		mv.setView(new RedirectView("./cartlist"));
+		return mv;
 	}
 }

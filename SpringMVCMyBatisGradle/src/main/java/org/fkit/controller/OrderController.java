@@ -1,13 +1,14 @@
 package org.fkit.controller;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.fkit.domain.Good;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.fkit.domain.Order;
-import org.fkit.service.GoodService;
+import org.fkit.domain.User;
 import org.fkit.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,11 +41,14 @@ public class OrderController {
 	public ModelAndView addorder(
 			@ModelAttribute Order order,
 			ModelAndView mv,
-			 HttpSession session){
+			 HttpSession session,
+			 HttpServletRequest request){
+		int good_sn=Integer.parseInt(request.getParameter("good_sn"));
+		int count=Integer.parseInt(request.getParameter("count"));
 		String state="待处理";
 		order.setState(state);
-		int count=orderService.addorder(order);
-		mv.setView(new RedirectView("./orderlist"));
+		orderService.addorder(order, good_sn, count);
+		mv.setView(new RedirectView("./order"));
 	return mv;
 	}
 	@RequestMapping(value="/deleteorder")
@@ -52,7 +56,7 @@ public class OrderController {
 			@ModelAttribute Order order,
 			ModelAndView mv,
 			 HttpSession session){
-		int count=orderService.deleteorder(order);
+		orderService.deleteorder(order);
 		mv.setView(new RedirectView("./orderlist"));
 	return mv;
 	}
@@ -61,15 +65,46 @@ public class OrderController {
 			@ModelAttribute Order order,
 			ModelAndView mv,
 			 HttpSession session,
-			 HttpServletRequest request){
+			 HttpServletRequest request,
+			 HttpServletResponse response) throws Exception{
 		int id=Integer.parseInt(request.getParameter("id"));
 		order.setId(id);
 		String state="配送中";
 		order.setState(state);
 		orderService.updateOrder(state, id);
+		int user_sn=Integer.parseInt(request.getParameter("user_sn"));
+		User user=new User();
+		user=orderService.selectUser(user_sn);
+		String email=user.getEmail();
+		System.out.println(email);
+		StringBuffer url = new StringBuffer();
+		StringBuilder builder = new StringBuilder();
+		// 正文
+		builder.append("亲爱的"+user.getUsername()+"您的邮件正在派送中，请保持手机畅通");
+		url.append("订单状态:" + order.getState());
+		SimpleEmail sendemail = new SimpleEmail();
+		sendemail.setHostName("smtp.163.com");
+		
+		// 指定要使用的邮件服务器
+		sendemail.setAuthentication("18205206236@163.com", "huiwen970112");// 使用163的邮件服务器需提供在163已注册的用户名、密码
+		sendemail.setCharset("UTF-8");
+		try {
+			sendemail.setCharset("UTF-8");
+			sendemail.addTo(email);
+			sendemail.setFrom("18205206236@163.com");
+			sendemail.setSubject("订单状态");
+			sendemail.setMsg(builder.toString());
+			sendemail.send();
+			System.out.println(builder.toString());
+		} catch (EmailException e) {
+			e.printStackTrace();
+		}
+		
+	
 		mv.setView(new RedirectView("./orderlist"));
 	return mv;
 }
+	
 	@RequestMapping(value="/endorder")
 	public ModelAndView endorder(
 			@ModelAttribute Order order,

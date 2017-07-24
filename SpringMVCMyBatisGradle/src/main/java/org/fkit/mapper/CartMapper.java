@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.fkit.domain.Cart;
-import org.fkit.domain.Good;
+
 
 
 public interface CartMapper {
@@ -24,6 +24,6 @@ public interface CartMapper {
 	Cart findWithId(@Param("good_sn") String good_sn);
 	@Update("update tb_cart set count=count+1 where good_sn=#{good_sn}")
 	int addCart(@Param("good_sn") String good_sn);
-	@Update("update cart set count=count-1 where good_sn=#{good_sn}")
+	@Update("update tb_cart set count=count-1 where good_sn=#{good_sn}")
 	int reduceCart(@Param("good_sn") String good_sn);
 }

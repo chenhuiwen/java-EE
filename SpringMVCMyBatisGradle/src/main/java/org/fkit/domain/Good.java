@@ -11,6 +11,13 @@ public class Good {
 	private String remark;
 	private String parent_category_sn;
 	private Integer count;
+	private Integer sale;
+	public Integer getSale() {
+		return sale;
+	}
+	public void setSale(Integer sale) {
+		this.sale = sale;
+	}
 	public Integer getCount() {
 		return count;
 	}
@@ -70,7 +77,8 @@ public class Good {
 	@Override
 	public String toString() {
 		return "Good [id=" + id + ", name=" + name + ",  price=" + price + ", image=" + image
-				+ ",image2=" + image2 + ",image3=" + image3 + ", remark=" + remark + ",parent_category_sn="+parent_category_sn+",count="+count+"]";
+				+ ",image2=" + image2 + ",image3=" + image3 + ", remark=" + remark + ",parent_category_sn="+parent_category_sn+",count="+count+","
+						+ "sale="+sale+"]";
 }
 	public void setId(Integer id) {
 		this.id = id;

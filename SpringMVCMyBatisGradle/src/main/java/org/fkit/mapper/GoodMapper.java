@@ -15,7 +15,7 @@ public interface GoodMapper {
 	List<Good> findAll();
 	@Delete("delete from tb_good where id=#{id}")
 	int delete(@Param("id") int id);
-	@Insert("insert into tb_good(id,image,image2,image3,name,price,parent_category_sn,count,remark)values(#{id},#{image},#{image2},#{image3},#{name},#{price},#{parent_category_sn},#{count},#{remark})")
+	@Insert("insert into tb_good(id,image,image2,image3,name,price,parent_category_sn,count,remark,sale)values(#{id},#{image},#{image2},#{image3},#{name},#{price},#{parent_category_sn},#{count},#{remark},#{sale})")
 	int add(Good good);
 	@Select(" select * from tb_good where parent_category_sn=#{parent_category_sn}")
 	List<Good> findSome(@Param("parent_category_sn") String parent_category_sn);
@@ -23,4 +23,8 @@ public interface GoodMapper {
 	Good selectGood(@Param("id") int id);
 	@Update("update tb_good set count=count-1 where id=#{id}")
 	int reduceGood(@Param("id") int id);
+	@Select(" select SUM(count) from tb_good ")
+	int sum();
+	@Select(" select SUM(sale) from tb_good ")
+	int sale();
 }

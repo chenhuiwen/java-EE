@@ -38,15 +38,20 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	@Override
+	/*@Override
 	public User findUser(String loginname, String phone) {
 		// TODO Auto-generated method stub
 		return userMapper.findWithLoginnameAndPhone(loginname, phone);
-	}
+	}*/
 	@Override
 	public int updateUser(String new1, String loginname) {
 		// TODO Auto-generated method stub
 		return userMapper.findWithNew1(new1, loginname);
+	}
+	@Override
+	public User find(String loginname, String email) {
+		// TODO Auto-generated method stub
+		return userMapper.findWithLoginnameAndEmail(loginname, email);
 	}
 	
 

@@ -1,8 +1,7 @@
 package org.fkit.domain;
 
-import java.io.Serializable;
 
-public class Cart implements Serializable{
+public class Cart{
 	private Integer id;
 	private String name;
 	private Double price;

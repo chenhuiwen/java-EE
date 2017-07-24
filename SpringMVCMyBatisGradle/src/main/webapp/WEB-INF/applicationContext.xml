@@ -25,7 +25,6 @@
     
 	<!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
 	<context:property-override location="/WEB-INF/db.properties"/>
-
 	<!-- 配置c3p0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		

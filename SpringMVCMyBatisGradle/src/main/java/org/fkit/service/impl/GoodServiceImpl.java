@@ -1,10 +1,6 @@
 package org.fkit.service.impl;
 
 import java.util.List;
-
-import javax.management.RuntimeErrorException;
-
-
 import org.fkit.domain.Good;
 import org.fkit.mapper.GoodMapper;
 import org.fkit.service.GoodService;
@@ -29,13 +25,6 @@ public class GoodServiceImpl implements GoodService{
 	}
 
 
-	
-
-
-	
-
-
-
 
 	@Override
 	public Good selectGood(int id) {
@@ -43,19 +32,11 @@ public class GoodServiceImpl implements GoodService{
 		return goodMapper.selectGood(id);
 	}
 
-
-
-
-
 	@Override
 	public List<Good> getSome(String parent_category_sn) {
 		// TODO Auto-generated method stub
 		return goodMapper.findSome(parent_category_sn);
 	}
-
-
-
-
 
 	@Override
 	public int deleteGood(int id) {
@@ -63,22 +44,33 @@ public class GoodServiceImpl implements GoodService{
 		return goodMapper.delete(id);
 	}
 
-
-
-
-
 	@Override
 	public int add(Good good) {
 		// TODO Auto-generated method stub
 		return goodMapper.add(good);
 	}
 
+	@Override
+	public void reduce(int id) {
+		// TODO Auto-generated method stub
+		goodMapper.reduceGood(id);
+	}
 
 
 
+	@Override
+	public int sum() {
+		// TODO Auto-generated method stub
+		return goodMapper.sum();
+	}
 
 
 
+	@Override
+	public int sale() {
+		// TODO Auto-generated method stub
+		return goodMapper.sale();
+	}
 
 
 

@@ -6,8 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 import org.fkit.domain.Good;
-import org.fkit.domain.User;
+
 import org.fkit.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,7 +48,9 @@ public class GoodController {
 			@ModelAttribute Good good,
 			ModelAndView mv,
 			 HttpSession session){
-		int count=goodService.add(good);
+		int sale=0;
+		good.setSale(sale);
+		goodService.add(good);
 		mv.setView(new RedirectView("./goodlist"));
 	return mv;
 	}
@@ -73,6 +76,32 @@ public class GoodController {
 		mv.setViewName("showForm");
 		return mv;
 	}
-	
+	/*@RequestMapping(value="/reduceGood")
+	public ModelAndView reduceGood(
+			@ModelAttribute Good good,
+			ModelAndView mv,
+			 HttpSession session,
+			 HttpServletRequest request){
+		int id=Integer.parseInt(request.getParameter("good_sn"));
+		good.setId(id);
+		Good good1= goodService.selectGood(id);
+		int count=good1.getCount();
+		if (count == 1){
+			goodService.deleteGood(id);
+		}else{
+			goodService.reduce(id);
+			}
+		
+		mv.setView(new RedirectView("./addorder"));
+	return mv;
+	}*/
+	@RequestMapping(value="/sumGood")
+	public String sumGood(){
+		int sum=goodService.sum();
+		System.out.println(sum);
+		int sale=goodService.sale();
+		
+		return "sum";
+	}
 }
 

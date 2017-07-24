@@ -1,23 +1,22 @@
 package org.fkit.controller;
 
-
-
-import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 
 import org.fkit.domain.User;
 import org.fkit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import com.mysql.fabric.Response;
-
 
 
 /**
@@ -69,7 +68,7 @@ public class UserController {
 	
 }
 	
-	@RequestMapping(value="/find")
+	/*@RequestMapping(value="/find")
 	 public ModelAndView find(
 			 String loginname,String phone,
 			 ModelAndView mv,
@@ -84,7 +83,52 @@ public class UserController {
 			mv.setViewName("findForm");
 		}
 		return mv;
+	
+	}*/
+	@RequestMapping(value="/find")
+	public ModelAndView find(
+		String loginname,String email,
+		ModelAndView mv,
+		HttpSession session,
+		HttpServletRequest request,
+		HttpServletResponse response)throws Exception{		
+	    User user=userService.find(loginname, email);
+	    System.out.println(user.toString());
+		if(user!=null){
+			StringBuffer url = new StringBuffer();
+			StringBuilder builder = new StringBuilder();
+			// 正文
+			builder.append(
+					"<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head><body>");
+			url.append("<font color='red'>" + user + "</font>");
+			builder.append("<br/><br/>");
+			builder.append("<div>" + url + "</div>");
+			builder.append("</body></html>");
+			SimpleEmail sendemail = new SimpleEmail();
+			sendemail.setHostName("smtp.163.com");
+			
+			// 指定要使用的邮件服务器
+			sendemail.setAuthentication("18205206236@163.com", "huiwen970112");// 使用163的邮件服务器需提供在163已注册的用户名、密码
+			sendemail.setCharset("UTF-8");
+			try {
+				sendemail.setCharset("UTF-8");
+				sendemail.addTo(email);
+				sendemail.setFrom("18205206236@163.com");
+				sendemail.setSubject("找回密码");
+				sendemail.setMsg(builder.toString());
+				sendemail.send();
+				System.out.println(builder.toString());
+			} catch (EmailException e) {
+				e.printStackTrace();
+			}
+			//response.getWriter().println("找回密码成功");	
+			mv.setViewName("loginForm");
+		}else{response.getWriter().println("获取密码失败");}
+		return null;
+	   
 	}
+	
+	
 	@RequestMapping(value="/update")
 	 public ModelAndView update(
 			 String new1,String loginname,

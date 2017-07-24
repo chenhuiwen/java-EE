@@ -59,7 +59,7 @@
 								电话
 							</label>
 							<div class="col-sm-10">
-								<input type="text" id="phone" name="phone" class="form-control">
+								<input type="text" id="email" name="email" class="form-control">
 							</div>
 						</div>
 						

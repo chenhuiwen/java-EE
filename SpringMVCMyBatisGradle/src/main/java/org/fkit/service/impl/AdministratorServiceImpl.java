@@ -2,7 +2,6 @@ package org.fkit.service.impl;
 
 import org.fkit.domain.Administrator;
 import org.fkit.mapper.AdministratorMapper;
-import org.fkit.mapper.UserMapper;
 import org.fkit.service.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

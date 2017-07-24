@@ -39,6 +39,6 @@ public class Collect {
 	@Override
 	public String toString() {
 		return "Good [id=" + id + ", good_name=" + good_name + ",  good_sn=" + good_sn + ", image=" + image
-				+ "]";
+				+ ",user_sn="+user_sn+"]";
 }
 }

@@ -31,11 +31,11 @@ public class CollectController {
 		collect.setGood_sn(good_sn);
 		int user_sn=Integer.parseInt(request.getParameter("user_sn"));
 		collect.setUser_sn(user_sn);
-	    collect= collectService.findCollect(good_sn, user_sn);
-		if(collect==null){
+	    Collect collect1= collectService.findCollect(good_sn, user_sn);
+		if(collect1==null){
 		collectService.saveCollect(collect);
 		}
-		mv.setView(new RedirectView("./collectlist"));
+		mv.setView(new RedirectView("./main"));
 				return mv;
 		
 	}

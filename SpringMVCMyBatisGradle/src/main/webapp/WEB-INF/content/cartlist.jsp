@@ -61,18 +61,23 @@
 			<td>${cart.price }</td>
 			<td>${cart.count }</td>
 			<td>
-			<form action="removecart" method="post" >
+			<form action="addcount" method="post" >
+			<input type="submit" value="+">
+			<input type="hidden" id="good_sn" name="good_sn" value="${cart.good_sn}">
+			</form>
+			<form action="reducecart" method="post" >
 			<input type="submit" value="-">
-			<input type="hidden" id="god_sn" name="good_sn" value="${cart.good_sn}">
+			<input type="hidden" id="good_sn" name="good_sn" value="${cart.good_sn}">
 			</form>
 			<form action="removecart" method="post" >
 			<input type="submit" value="删除">
 			<input type="hidden" id="id" name="id" value="${cart.id}">
 			</form>
-			<form action="addorder" method="post" >
-			<input type="submit" value="立即购买">
+			<form action="addorder" method="post">
 			<input type="hidden" id="good_sn" name="good_sn" value="${cart.good_sn}">
 			<input type="hidden" id="user_sn" name="user_sn" value="${cart.user_sn}">
+			<input type="hidden" id="count" name="count" value="${cart.count}">
+			<input type="submit" value="立即购买">
 			</form>
 			</td>
 		</tr>

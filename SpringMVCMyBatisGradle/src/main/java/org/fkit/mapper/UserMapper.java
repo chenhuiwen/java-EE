@@ -27,5 +27,8 @@ public interface UserMapper {
 	@Select("select * from tb_user where loginname=#{loginname} and Phone=#{phone}")
 	User findWithLoginnameAndPhone(@Param("loginname")String loginname,
 			@Param("phone") String phone);
+	@Select("select * from tb_user where loginname=#{loginname} and email=#{email}")
+	User findWithLoginnameAndEmail(@Param("loginname")String loginname,
+			@Param("email") String email);
 }
 

@@ -33,6 +33,7 @@
 			</td>
 			<td>
 			<form action="doingorder" method="post" >
+			<input type="hidden" id="user_sn" name="user_sn" value="${order.user_sn }">
 			<input type="submit" value="发货">
 			<input type="hidden" id="good_id" name="good_id" value="${order.good_sn}">
 			<input type="hidden" id="id" name="id" value="${order.id}">

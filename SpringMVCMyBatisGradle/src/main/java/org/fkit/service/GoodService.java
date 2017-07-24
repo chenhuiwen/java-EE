@@ -9,7 +9,10 @@ public interface GoodService {
 	List<Good> getAll();
 	int deleteGood(int id);
 	int add(Good good);
+	void reduce(int id);
 	List<Good> getSome(String parent_category_sn);
 	Good selectGood(int id);
+	int sum();
+	int sale();
 	
 }
