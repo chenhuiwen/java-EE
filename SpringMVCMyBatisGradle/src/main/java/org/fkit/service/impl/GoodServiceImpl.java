@@ -41,13 +41,15 @@ public class GoodServiceImpl implements GoodService{
 	@Override
 	public int deleteGood(int id) {
 		// TODO Auto-generated method stub
-		return goodMapper.delete(id);
+		goodMapper.delete(id);
+		return 1;
 	}
 
 	@Override
 	public int add(Good good) {
 		// TODO Auto-generated method stub
-		return goodMapper.add(good);
+		goodMapper.add(good);
+		return 1;
 	}
 
 	@Override

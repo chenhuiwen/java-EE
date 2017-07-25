@@ -15,6 +15,6 @@ public interface CartService {
 	int deleteAll(Cart cart);
 	Cart findCart(String good_sn);
 	void saveCart(Cart cart);
-	
+	List<Cart> getUserCart(String user_sn);
 
 }

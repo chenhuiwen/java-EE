@@ -12,11 +12,7 @@ public class GoodServiceTest extends BaseJunitTest{
 	@Autowired
     private GoodService goodService;
 
-	@Test
-	public void testList(){
-		List<Good> good_list=goodService.getAll();
-		System.out.println(good_list);
-	}
+	
 	@Test
 	public void testAdd(){
 		Good good=new Good();
@@ -24,14 +20,26 @@ public class GoodServiceTest extends BaseJunitTest{
 		good.setImage("image1");
 		good.setName("name");
 		good.setParent_category_sn("2");
-		goodService.add(good);
-		System.out.println(good);
+		int count=goodService.add(good);
+		System.out.println(count);
 		
+	}
+	@Test
+	public void testList(){
+		List<Good> good_list=goodService.getAll();
+		System.out.println(good_list);
 	}
 	@Test
 	public void testSelect(){
 		int id=1;
 		Good good=goodService.selectGood(id);
 		System.out.println(good);
+	}
+	@Test
+	public void testDelete(){
+		int id=2;
+		int count=goodService.deleteGood(id);
+		System.out.println(count);
+		
 	}
 }

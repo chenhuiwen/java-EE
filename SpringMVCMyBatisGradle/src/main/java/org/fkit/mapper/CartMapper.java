@@ -14,6 +14,8 @@ import org.fkit.domain.Cart;
 public interface CartMapper {
 	@Select(" select * from tb_cart ")
 	List<Cart> findAll();
+	@Select(" select * from tb_cart where user_sn=#{user_sn}")
+	List<Cart> findUserAll(@Param("user_sn") String user_sn);
 	@Delete("delete from tb_cart where id=#{id}")
 	int delete(Cart cart);
 	@Insert("insert into tb_cart(good_sn,image,name,price,user_sn,count)values(#{id},#{image},#{name},#{price},#{user_sn},#{count})")

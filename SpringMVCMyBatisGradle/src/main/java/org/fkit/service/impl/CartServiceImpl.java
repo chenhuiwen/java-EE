@@ -75,6 +75,15 @@ public class CartServiceImpl implements CartService{
 		}
 	}
 
+
+
+	@Override
+	public List<Cart> getUserCart(String user_sn) {
+		// TODO Auto-generated method stub
+		System.out.println("user_sn");
+		return cartMapper.findUserAll(user_sn);
+	}
+
 	
 
 

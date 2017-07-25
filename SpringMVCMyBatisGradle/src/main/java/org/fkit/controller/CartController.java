@@ -31,6 +31,17 @@ public class CartController {
 		model.addAttribute("cart_list", cart_list);
 		return "cartlist";
 	}
+	@RequestMapping(value="/Usercartlist")
+	 public String cartlist(Model model,
+			 HttpServletRequest request){
+		String user_sn=request.getParameter("user_sn");
+		Cart cart= new Cart();
+		cart.setUser_sn(user_sn);
+		System.out.println(user_sn);
+		List<Cart> cart_list = cartService.getUserCart(user_sn);
+		model.addAttribute("cart_list", cart_list);
+		return "cartlist";
+	}
 	@RequestMapping(value="/addCart")
 	public ModelAndView addCart(
 			@ModelAttribute Cart cart,

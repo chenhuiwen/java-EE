@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -86,8 +87,9 @@ public class UserController {
 	
 	}*/
 	@RequestMapping(value="/find")
-	public ModelAndView find(
+	public String find(
 		String loginname,String email,
+		Model model,
 		ModelAndView mv,
 		HttpSession session,
 		HttpServletRequest request,
@@ -97,7 +99,7 @@ public class UserController {
 		if(user!=null){
 			StringBuffer url = new StringBuffer();
 			StringBuilder builder = new StringBuilder();
-			// 正文
+			//正文
 			builder.append(
 					"<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head><body>");
 			url.append("<font color='red'>" + user + "</font>");
@@ -118,13 +120,12 @@ public class UserController {
 				sendemail.setMsg(builder.toString());
 				sendemail.send();
 				System.out.println(builder.toString());
+				
 			} catch (EmailException e) {
 				e.printStackTrace();
 			}
-			//response.getWriter().println("找回密码成功");	
-			mv.setViewName("loginForm");
-		}else{response.getWriter().println("获取密码失败");}
-		return null;
+		}//else{responsSe.getWriter().println("获取密码失败");}
+		return "loginForm";
 	   
 	}
 	

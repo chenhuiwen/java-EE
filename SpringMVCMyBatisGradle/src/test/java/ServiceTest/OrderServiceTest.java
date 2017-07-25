@@ -41,9 +41,14 @@ public class OrderServiceTest extends BaseJunitTest{
 	public void testUpdate(){
 		String state="单元测试";
 		int id=1;
-		orderService.updateOrder(state, id);
-		
-		
+		orderService.updateOrder(state, id);	
 	}
-	
+	@Test
+	public void testDelete(){
+		int id=1;
+		Order order=new Order();
+		order.setId(id);
+		int count=orderService.deleteorder(order);
+		System.out.println(count);
+	}
 }
