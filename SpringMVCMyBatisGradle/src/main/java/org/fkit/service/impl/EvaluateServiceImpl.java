@@ -33,7 +33,7 @@ public class EvaluateServiceImpl implements EvaluateService{
 	@Override
 	public List<Evaluate> selectEvaluate(int good_sn) {
 		// TODO Auto-generated method stub
-		return null;
+		return evaluateMapper.findSome(good_sn);
 	}
 
 

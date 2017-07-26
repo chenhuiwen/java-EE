@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.fkit.domain.Evaluate;
-import org.fkit.domain.Good;
 import org.fkit.service.EvaluateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -50,5 +49,14 @@ public class EvaluateController {
 		mv.setView(new RedirectView("./evaluatelist"));
 	return mv;
 	}
-
+	@RequestMapping(value="/showEvaluate")
+	 public String showEvaluate(Model model,
+			 @ModelAttribute Evaluate evaluate ,
+			 HttpServletRequest request){
+		int good_sn=Integer.parseInt(request.getParameter("good_sn"));
+		evaluate.setGood_sn(good_sn);
+		List<Evaluate> evaluate_list = evaluateService.selectEvaluate(good_sn);
+		model.addAttribute("evaluate_list", evaluate_list);
+		return "showEvaluatetForm";
+	}
 }

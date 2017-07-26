@@ -6,9 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+import org.fkit.domain.Evaluate;
 import org.fkit.domain.Good;
-
+import org.fkit.service.EvaluateService;
 import org.fkit.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +24,8 @@ public class GoodController {
 	@Autowired
 	@Qualifier("goodService")
 	private GoodService goodService;
-	
+	@Qualifier("evaluateService")
+	private EvaluateService evaluateService;
 	@RequestMapping(value="/goodlist")
 	 public String goodlist(Model model){
 		List<Good> good_list = goodService.getAll();
@@ -68,14 +69,20 @@ public class GoodController {
 	}
 	@RequestMapping(value="/select")
 	 public ModelAndView select(
-			 int id,
 			 ModelAndView mv,
-			 HttpSession session){
+			 HttpSession session,
+			 HttpServletRequest request){
+		int id=Integer.parseInt(request.getParameter("id"));
 		Good good=goodService.selectGood(id);
 		session.setAttribute("good", good);
+		//int good_sn=id;
+		//evaluate.setGood_sn(good_sn);
+		//List<Evaluate> evaluate_list=evaluateService.selectEvaluate(good_sn);
+		//model.addAttribute("evaluate_list",evaluate_list);
 		mv.setViewName("showForm");
 		return mv;
 	}
+	
 	/*@RequestMapping(value="/reduceGood")
 	public ModelAndView reduceGood(
 			@ModelAttribute Good good,

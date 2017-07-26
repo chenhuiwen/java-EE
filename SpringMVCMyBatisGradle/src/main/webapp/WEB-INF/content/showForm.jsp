@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,8 +73,7 @@
 <SCRIPT src="js/lib.js" type=text/javascript></SCRIPT>
 <SCRIPT src="js/163css.js" type=text/javascript></SCRIPT>
 	<center>
-	<h2><font color="#333399">${sessionScope.good.price }￥</font></h2>
-	${sessionScope.user.id }
+	<h2><font color="#333399">￥${sessionScope.good.price }</font></h2>
 	<form action="addCart" method="post">
 	<input type="hidden" id="id" name="id" value="${sessionScope.good.id }">
 	<input type="hidden" id="name" name="name" value="${sessionScope.good.name }">
@@ -81,6 +81,7 @@
 	<input type="hidden" id="image" name="image" value="${sessionScope.good.image }">
 	<input type="submit" value="加入购物车">
 	</form>
+	<br>
 	<form action="savecollect" method="post">
 	<input type="hidden" id="good_sn" name="good_sn" value="${sessionScope.good.id }">
 	<input type="hidden" id="image" name="image" value="${sessionScope.good.image }">
@@ -89,5 +90,9 @@
 	<input type="submit" value="收藏">
 	</form>
 	</center>
+	<form action="showEvaluate" method="post">
+	<input type="hidden" id="good_sn" name="good_sn" value="${sessionScope.good.id }">
+	<input type="submit" value="查看评论">
+	</form>
 </body>
 </html>

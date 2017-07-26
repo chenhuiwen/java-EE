@@ -22,6 +22,11 @@
   
   <link href="css/style.css" rel="stylesheet">
   <style type="text/css">
+  td img { width: 100px; height: 100px; }
+  
+  #fileImage{
+  width:80px;
+  }
   #div1{
     	width:28%;
     	height:600px;  
@@ -209,13 +214,15 @@
 		</table><br>
 		<table border="1">
 	<tr>
-		<th width="50px">货号</th><th width="100px">图片1</th><th width="50px">名称</th><th width="50px">价格</th><th width="50px">类别</th><th width="50px">库存</th><th width="50px">操作</th ><th width="50px">销售统计</th>
+		<th width="50px">货号</th><th width="100px">图片1</th><th width="100px">图片2</th><th width="100px">图片3</th><th width="50px">名称</th><th width="50px">价格</th><th width="50px">类别</th><th width="50px">库存</th><th width="50px">操作</th ><th width="50px">销售统计</th>
 	</tr>
 	<c:forEach items="${requestScope.good_list }" var="good">
 		<form action="delete" method="post" >
 		<tr>
 			<td>${good.id }</td>
 			<td><img src="image/${good.image}"></td>
+			<td><img src="image/${good.image2}"></td>
+			<td><img src="image/${good.image3}"></td>
 			<td>${good.name }</td>
 			<td>${good.price }</td>
 			<td>${good.parent_category_sn }</td>
@@ -230,6 +237,8 @@
 	<tr height="100px">
 	<td><input type="text" id="id" name="id" class="form-control"></td>
 	<td><input id="fileImage" name="image" type="file" size="30" /></td>
+	<td><input id="fileImage" name="image2" type="file" size="30" /></td>
+	<td><input id="fileImage" name="image3" type="file" size="30" /></td>
 	<td><input type="text" id="name" name="name" class="form-control"></td>
 	<td><input type="text" id="price" name="price" class="form-control"></td>
 	<td><input type="text" id="parent_category_sn" name="parent_category_sn" class="form-control"></td>

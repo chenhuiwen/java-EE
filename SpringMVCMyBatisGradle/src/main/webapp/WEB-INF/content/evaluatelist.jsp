@@ -203,11 +203,6 @@
 		</div>
 		<div class="col-md-6" id="div2">
 		<table border="1">
-		<tr>
-		<th>添加商品</th>
-		</tr>
-		</table><br>
-		<table border="1">
 	<tr>
 		<th>订单号</th><th>物流评分</th><th>质量评分</th><th>服务评分</th><th width="150px">图片</th><th>货号</th><th>评价人</th><th>内容</th><th>操作</th>
 	</tr>

@@ -14,23 +14,25 @@
 <center>
 <h1>订单号：${sessionScope.order.id}</h1>
 <form action="saveEvaluate" method="post">
+<div  style="line-height:80px;">
 <h2>您对这次的物流评分是：</h2>
-<br>
- <input id="point" name="point" value="4" type="number" class="rating" min=0 max=5 step=0.2 data-size="lg">
-<br>
-<h2>您对这次的物品质量评分是：</h2>
-<br>
- <input id="point2" name="point2" value="4" type="number" class="rating" min=0 max=5 step=0.2 data-size="lg">
-<br>
-<h2>您对这次的服务评分是：</h2>
-<br>
- <input id="point3" name="point3" value="4" type="number" class="rating" min=0 max=5 step=0.2 data-size="lg">
-<br>
 
-   <br>
+ <input id="point" name="point" value="4" type="number" class="rating" min=0 max=5 step=0.2 data-size="lg">
+
+<h2>您对这次的物品质量评分是：</h2>
+
+
+ <input id="point2" name="point2" value="4" type="number" class="rating" min=0 max=5 step=0.2 data-size="lg" >
+
+
+<h2>您对这次的服务评分是：</h2>
+
+ <input id="point3" name="point3" value="4" type="number" class="rating" min=0 max=5 step=0.2 data-size="lg">
+
+</div>
 <h2>您可以配上文字和图片</h2>
 文字：<input type="text" id="text" name="text"><br>
-图片：<input id="fileImage" name="image" type="file" size="30" multiple /><br>
+图片：<input id="fileImage" name="image" type="file" size="30" /><br>
 <input type="hidden" id="order_sn" name="order_sn" value="${sessionScope.order.id}">
 <input type="hidden" id="good_sn"  name="good_sn" value="${sessionScope.order.good_sn}">
 <input type="hidden" id="user_sn"  name="user_sn"  value="${sessionScope.order.user_sn}">
@@ -39,6 +41,7 @@
  <button type="reset" class="btn btn-default">Reset</button>
 
 </form>
+
 <script>
 
     jQuery(document).ready(function () {
